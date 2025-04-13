@@ -19,6 +19,11 @@ const userSchema = Schema({
         unique:true,
         lowercase:true,
     },
+    identificationNumber:{
+        type:Number,
+        required:[true, 'Identification number is required'],
+        unique:true,
+    },
     password:{
         type:String,
         required:[true, 'Password is required'],
