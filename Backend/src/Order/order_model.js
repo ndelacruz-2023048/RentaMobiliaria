@@ -9,6 +9,7 @@ const orderSchema = Schema({
         type:Date,
         required:[true, 'Day return is required'],
     },
+    /*Fecha de entrega de entrega y devolucion*/
     priority:{
         type:String,
         enum:['low','medium','high'],
@@ -24,17 +25,12 @@ const orderSchema = Schema({
         ref:'User',
         required:[true, 'Requestor is required'],
     },
-    supervisor:{
-        type:Schema.Types.ObjectId,
-        ref:'User',
-        required:[true, 'Supervisor is required'],
-    },
     materialId:{
+        /*Array */
         type:Schema.Types.ObjectId,
         ref:'Material',
         required:[true, 'Material is required'],
     },
-
 })
 
 export default model('order',orderSchema)

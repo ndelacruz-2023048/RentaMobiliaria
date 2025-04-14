@@ -31,9 +31,10 @@ const loanSchema = Schema({
     },
     status:{
         type:String,
-        enum:['active', 'borrow','lost','broken','unavailable'],
+        enum:['completed', 'borrow'],
         default:'active',
     },
+    /*Atributo de estado de material */
     userId:{
         type:Schema.Types.ObjectId,
         ref:'User',
@@ -44,7 +45,6 @@ const loanSchema = Schema({
         ref:'User',
         required:[true, 'Supervisor is required'],
     }
-
 })
 
 export default model('Loan',loanSchema)

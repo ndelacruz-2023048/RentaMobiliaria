@@ -13,19 +13,21 @@ const materialSchema = Schema({
         type:String,
         required:[true, 'Material category is required'],
         enum:['mechanics','physics','informatics','electronics','chemistry','biology','mathematics','other'],
+        default:'general',
     },  // Categoría (mecánica, física, informática)
     stock: {
         type:Number,
         required:[true, 'Material stock is required'],
     },  // Cantidad disponible
-    subjectArea: {
-        type:String,
-        required:[true, 'Material subject area is required'],
-    },  // Área (por ejemplo, física, química)
     createdAt: { 
         type: Date, 
         default: Date.now 
     },
+    image:{
+        type:String,
+        required:[true, 'Material image is required'],
+    },
+    /*Agregar el id de la bodega*/
     updatedAt: { 
         type: Date, 
         default: Date.now 
