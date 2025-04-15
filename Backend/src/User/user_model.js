@@ -30,8 +30,12 @@ const userSchema = Schema({
     },
     role:{
         type:String,
-        enum:['admin','client','director'],
-        default:'client',
+        enum:['teacher','estudent','director'],
+        lowercase:true,
+        default:'estudent',
+    },
+    profilePicture:{
+        type:String,
     }
 })
 

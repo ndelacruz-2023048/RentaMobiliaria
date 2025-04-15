@@ -5,11 +5,16 @@ const orderSchema = Schema({
         type:String,
         required:[true, 'Description is required'],
     },
-    estimatedDeliveryDate:{
+    deliveryDate:{
+        type:Date,
+        required:[true, 'Day return is required'],
+    },
+    returnDate:{
         type:Date,
         required:[true, 'Day return is required'],
     },
     /*Fecha de entrega de entrega y devolucion*/
+    //AGREGADO
     priority:{
         type:String,
         enum:['low','medium','high'],
@@ -27,9 +32,20 @@ const orderSchema = Schema({
     },
     materialId:{
         /*Array */
-        type:Schema.Types.ObjectId,
-        ref:'Material',
-        required:[true, 'Material is required'],
+        //AGREGADO
+        type:[
+            {
+                material:{
+                    type:Schema.Types.ObjectId,
+                    ref:'Material',
+                    required:[true, 'Material is required'],
+                },
+                amount:{
+                    type:Number,
+                    required:[true,'Amount is required']
+                }
+            }
+        ]
     },
 })
 

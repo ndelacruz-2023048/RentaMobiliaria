@@ -18,11 +18,12 @@ const routes = ()=>{
 
 export const initServer = ()=>{
     const app = express()
-    try {
+    try{
         configs(app)
         routes(app)
         app.listen(process.env.PORT)
-    } catch (error) {
-        console.error('Server init failed',error)
+        console.log(`Server running in port ${process.env.PORT}`)
+    }catch(err){
+        console.error('Server init failed', err)
     }
 }

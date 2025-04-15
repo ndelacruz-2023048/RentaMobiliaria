@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { model, Mongoose, Schema } from "mongoose";
 
 const materialSchema = Schema({
     name:{ 
@@ -28,6 +28,12 @@ const materialSchema = Schema({
         required:[true, 'Material image is required'],
     },
     /*Agregar el id de la bodega*/
+    //AGREGADO
+    cellar:{
+        type:Schema.Types.ObjectId,
+        ref:'Cellar',
+        required:[true,'Cellar is required']
+    },
     updatedAt: { 
         type: Date, 
         default: Date.now 
