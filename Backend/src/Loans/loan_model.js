@@ -19,7 +19,6 @@ const loanSchema = Schema({
     },
     returnedProductImage:{
         type:String,
-        required:[true, 'Returned product image is required'],
     },
     deliveryConditionNotes:{
         type:String,
@@ -27,14 +26,18 @@ const loanSchema = Schema({
     },
     returnConditionNotes:{
         type:String,
-        required:[true, 'Return condition notes are required'],
     },
     status:{
         type:String,
-        enum:['completed', 'borrow'],
-        default:'active',
+        enum:['completed', 'pending'],
+        default:'pending',
     },
     /*Atributo de estado de material */
+    materialStatus:{
+        type:String,
+        lowercase:true,
+        enum:['good','bad']
+    },
     userId:{
         type:Schema.Types.ObjectId,
         ref:'User',

@@ -2,27 +2,33 @@ import express from 'express'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import cors from 'cors'
-
-
+import AuthRoutes from '../src/Auth/auth_routes.js'
+import UserRoutes from '../src/User/user_routes.js'
+import MaterialRoutes from '../src/Material/material_routes.js'
+import CellarRoutes from '../src/Cellar/cellar_routes.js'
 const configs = (app)=>{
     app.use(express.json())
-    app.use(express.urlencoded({extended:false}))
+    app.use(express.urlencoded({extended:true}))
     app.use(cors())
     app.use(helmet())
     app.use(morgan('dev'))
 }
 
-const routes = ()=>{
-
+const routes = (app)=>{
+    app.use('/v1',AuthRoutes)
+    app.use('/v1/user',UserRoutes)
+    app.use('/v1/material',MaterialRoutes)
+    app.use('/v1/cellar',CellarRoutes)
 }
 
 export const initServer = ()=>{
     const app = express()
-    try {
+    try{
         configs(app)
         routes(app)
         app.listen(process.env.PORT)
-    } catch (error) {
-        console.error('Server init failed',error)
+        console.log(`Server running in port ${process.env.PORT}`)
+    }catch(err){
+        console.error('Server init failed', err)
     }
 }

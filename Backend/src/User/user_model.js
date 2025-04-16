@@ -22,6 +22,7 @@ const userSchema = Schema({
     identificationNumber:{
         type:Number,
         required:[true, 'Identification number is required'],
+        maxlength:7,
         unique:true,
     },
     password:{
@@ -30,9 +31,18 @@ const userSchema = Schema({
     },
     role:{
         type:String,
-        enum:['admin','client','director'],
-        default:'client',
+        enum:['teacher','estudent','principal'],
+        lowercase:true,
+        default:'estudent',
+    },
+    profilePicture:{
+        type:String,
     }
 })
 
-export default model('User',animalSchema)
+userSchema.methods.toJSON = function(){
+    const {__v,password,...user}=this.toObject()
+    return user
+}
+
+export default model('User',userSchema)
