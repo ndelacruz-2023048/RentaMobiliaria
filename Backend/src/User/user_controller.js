@@ -31,6 +31,7 @@ export const getUser = async(req,res)=>{
 export const updateUser = async(req,res)=>{
     try {
         let { id } = req.params
+        if(!id) id = req.user.uid
         let data = req.body
         data.role = req.user.role
         const update = await User.findByIdAndUpdate(
@@ -133,5 +134,17 @@ export const changeRol = async(req,res)=>{
     } catch (error) {
         console.log(error)
         return res.status(500).send({success:false,message: 'General error showing the User'})
+    }
+}
+
+export const findByIN =async(req,res)=>{
+    try {
+        const {IN} = req.params
+        const user = await User.findOne({identificationNumber:IN})
+        if(!user) return res.status(404).send({success:false,message:'User not found'})
+        return res.send({success:true,message:user})
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({success:false,message:'General searching the user'})
     }
 }

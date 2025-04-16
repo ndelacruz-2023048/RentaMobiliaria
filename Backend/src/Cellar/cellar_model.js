@@ -8,11 +8,10 @@ const cellarSchema = Schema({
     supervisors:{
         type:[
             {
-                supervisor:{
                     type:Schema.Types.ObjectId,
                     ref:'User',
                     required:[true,'A Supervisor y required']
-                }
+            
             }
         ]
     }

@@ -4,6 +4,8 @@ import helmet from 'helmet'
 import cors from 'cors'
 import AuthRoutes from '../src/Auth/auth_routes.js'
 import UserRoutes from '../src/User/user_routes.js'
+import MaterialRoutes from '../src/Material/material_routes.js'
+import CellarRoutes from '../src/Cellar/cellar_routes.js'
 const configs = (app)=>{
     app.use(express.json())
     app.use(express.urlencoded({extended:true}))
@@ -15,6 +17,8 @@ const configs = (app)=>{
 const routes = (app)=>{
     app.use('/v1',AuthRoutes)
     app.use('/v1/user',UserRoutes)
+    app.use('/v1/material',MaterialRoutes)
+    app.use('/v1/cellar',CellarRoutes)
 }
 
 export const initServer = ()=>{

@@ -8,12 +8,14 @@ const materialSchema = Schema({
     description: {
         type:String,
         required:[true, 'Material description is required'],
+        maxlength:[400,'Cant overcome 400 characters']
     },  // Descripción del material
     category: {
         type:String,
         required:[true, 'Material category is required'],
         enum:['mechanics','physics','informatics','electronics','chemistry','biology','mathematics','other'],
-        default:'general',
+        default:'other',
+        lowercase:true
     },  // Categoría (mecánica, física, informática)
     stock: {
         type:Number,
@@ -25,7 +27,6 @@ const materialSchema = Schema({
     },
     image:{
         type:String,
-        required:[true, 'Material image is required'],
     },
     /*Agregar el id de la bodega*/
     //AGREGADO
