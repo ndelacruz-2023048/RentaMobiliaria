@@ -84,7 +84,7 @@ export const changePassword =async(req,res)=>{
  asignar bodegas a usuarios de tipo teacher
  */
 
-export const changeProfilePicture = async(req,res)=>{
+export const changeProfilePicture = async(req,res,error)=>{
     try {
         if(req.file && req.filePath){
                 const user = await User.findOne({_id:req.user.uid})
@@ -92,6 +92,8 @@ export const changeProfilePicture = async(req,res)=>{
                 try{
                     console.log(filePath);
                     await unlink(filePath)
+                    user.profilePicture = req.file.filename
+                    await user.save()
                     return res.send({success:true,message:'Profile picture changed'})
                 }catch(unlinkErr){
                     console.error('Error deleting file', unlinkErr)
