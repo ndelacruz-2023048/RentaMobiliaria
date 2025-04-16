@@ -5,6 +5,8 @@ export const register = async(req,res)=>{
     try {
         let data = req.body
         let usuario = new User(data)
+        console.log(data);
+        
         usuario.password = await encrypt(usuario.password)
         usuario.role = 'estudent'
         usuario.profilePicture = req.file.filename ?? null
@@ -17,13 +19,13 @@ export const register = async(req,res)=>{
 }
 export const login = async(req,res)=>{
     try {
-        let { username,password } = req.body
-        let user = await User.findOne({username})
+        let { email,password } = req.body
+        let user = await User.findOne({email})
         if(user.status === false) return res.send({succcess:false,message:'This profile was deleted'})
         if(user && await checkPassword(user.password, password)){
             let loggedUser={
                 uid: user._id,
-                username: user.username,
+                email: user.email,
                 name:user.name,
                 role:user.role
             }

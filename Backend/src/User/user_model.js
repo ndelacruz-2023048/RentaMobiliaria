@@ -22,6 +22,7 @@ const userSchema = Schema({
     identificationNumber:{
         type:Number,
         required:[true, 'Identification number is required'],
+        maxlength:7,
         unique:true,
     },
     password:{
@@ -30,7 +31,7 @@ const userSchema = Schema({
     },
     role:{
         type:String,
-        enum:['teacher','estudent','director'],
+        enum:['teacher','estudent','principal'],
         lowercase:true,
         default:'estudent',
     },
@@ -39,4 +40,4 @@ const userSchema = Schema({
     }
 })
 
-export default model('User',animalSchema)
+export default model('User',userSchema)

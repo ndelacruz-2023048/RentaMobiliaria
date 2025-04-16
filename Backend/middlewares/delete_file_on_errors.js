@@ -6,6 +6,8 @@ export const deleteFileOnError = async(error, req, res, next)=>{
     if(req.file && req.filePath){
                             //c://dev/adopsys/uploads/img/users | nombrearchivo.png
         const filePath = join(req.filePath, req.file.filename)
+        
+        
         try{
             await unlink(filePath)
         }catch(unlinkErr){
@@ -28,3 +30,4 @@ export const deleteFileOnError = async(error, req, res, next)=>{
         }
     )
 }
+
